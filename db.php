@@ -1,10 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Підключення до бази даних через PDO (та сама таблиця products,
- * що й у практикумах №4–5).
- */
 
 ini_set('display_errors', '0');
 error_reporting(E_ALL);
