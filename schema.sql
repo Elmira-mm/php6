@@ -1,5 +1,4 @@
 -- Крок 1. Створення бази даних і таблиці.
--- Виконати в phpMyAdmin або через консольний клієнт mysql.
 
 CREATE DATABASE IF NOT EXISTS practicum4 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE practicum4;
