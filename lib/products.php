@@ -1,23 +1,11 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Функції для роботи з таблицею products (той самий домен, що й у
- * попередніх практикумах). Нічого не виводять самі — повертають дані
- * або структурований результат, а серіалізацію в JSON виконує api.php.
- */
-
-/**
- * Крок 4. Список усіх товарів.
- */
 function getAllProducts(PDO $pdo): array
 {
     return $pdo->query('SELECT * FROM products ORDER BY id')->fetchAll();
 }
 
-/**
- * Крок 4. Один товар за id, або null, якщо такого немає.
- */
 function getProductById(PDO $pdo, int $id): ?array
 {
     $stmt = $pdo->prepare('SELECT * FROM products WHERE id = :id');
@@ -27,10 +15,6 @@ function getProductById(PDO $pdo, int $id): ?array
     return $row !== false ? $row : null;
 }
 
-/**
- * Валідація полів для створення товару. Повертає масив помилок
- * (поле => повідомлення); порожній масив означає, що все гаразд.
- */
 function validateCreateInput(array $input): array
 {
     $errors = [];
@@ -59,11 +43,6 @@ function validateCreateInput(array $input): array
     return $errors;
 }
 
-/**
- * Крок 5. Створення товару (звичайний CRUD без action).
- * Повертає ['status' => int, 'body' => array] — готовий HTTP-код
- * і тіло відповіді, яке api.php лише серіалізує в JSON.
- */
 function createProduct(PDO $pdo, array $input): array
 {
     $errors = validateCreateInput($input);
@@ -106,10 +85,6 @@ function createProduct(PDO $pdo, array $input): array
     ];
 }
 
-/**
- * Крок 6. Доменна дія — поповнення залишку (action=restock).
- * Приймає id товару і додатню кількість quantity, збільшує stock.
- */
 function restockProduct(PDO $pdo, array $input): array
 {
     $id = $input['id'] ?? null;
@@ -151,10 +126,6 @@ function restockProduct(PDO $pdo, array $input): array
         'body' => ['success' => true, 'data' => $updated],
     ];
 }
-
-/**
- * Читає тіло POST-запиту — як JSON (php://input), так і звичайну форму ($_POST).
- */
 function parseRequestInput(): array
 {
     $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
