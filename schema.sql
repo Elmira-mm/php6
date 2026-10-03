@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS products (
     stock INT NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Тестові дані (той самий wellness-домен, що й у попередніх практикумах)
 INSERT INTO products (name, price, sku, stock) VALUES
     ('Ceremonial Matcha Kyoto', 899.00, 'MAT-003', 14),
     ('Matcha Latte Blend 150g', 489.00, 'MAT-004', 0),
